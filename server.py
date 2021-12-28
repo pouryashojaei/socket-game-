@@ -2,10 +2,13 @@ import socket
 import os
 import random
 
+#function of system
 def clear():
     os.system('cls')
 
-clear()    
+clear()
+
+#name server  
 name=input("enter your name : ")
 clear()
 
@@ -22,26 +25,27 @@ print(cName,"  from ",str(address), 'connected !')
 
 ##########################################
 startMessage=client.recv(123456).decode('utf-8')
-print(startMessage ,)
+print(startMessage)
 awnser=input("enter your awnser by Y/N:  ")
 
 
-
+##############################################
 if awnser=="y" or awnser =="Y":
 
     try:
         while True:
     
-            fmessage1="<--"
-            fmessage2="-->"
-            fmessage3="-----------------------------"
+            fmessage1="-"
+            fmessage2="-"
+            
 
             client.sendall(fmessage1.encode('utf-8'))
+
             #recive number from client
             number=client.recv(123456).decode("utf-8")
             m1='whay {}'.format(number)
             print(m1)
-            aw=input(" if you ok push key (Y)")
+            aw=input("else --> if you accept number push key (Y)")
             if aw=="y" or aw=="y":
                  clear()
                  server.close()
@@ -54,34 +58,12 @@ if awnser=="y" or awnser =="Y":
             
             #create random number
             number=random.randint(0,100)
-            print(number)
+            print("server select number : {}".format(number))
             client.sendall(str(number).encode("utf-8"))
 
             print(client.recv(123456).decode('utf-8'))
 
             client.sendall(fmessage1.encode('utf-8'))
-
-
-            # number1=client.recv(123456).decode("utf-8")
-            # print('whay {}'.format(number1))
-
-            # m2='so how many?'
-            # client.sendall(m2.encode('utf-8'))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -92,7 +74,3 @@ if awnser=="y" or awnser =="Y":
 elif awnser=="N" or awnser=="n":
     clear()
     server.close()
-
-def createNumber():
-    number=random.randint(0,100)
-    return number
